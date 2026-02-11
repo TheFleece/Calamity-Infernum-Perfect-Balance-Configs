@@ -1,62 +1,61 @@
 @echo off
-chcp 65001 >nul
+title Terraria Installer Builder
+cls
+
 echo ========================================
-echo Terraria Auto-Installer - Build Script
+echo       Terraria Auto-Installer Builder
 echo ========================================
 echo.
 
-:: 1. Проверка Python
+REM 1. Check Python
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo [ERROR] Python не найден! Установите Python 3.8+ и добавьте в PATH.
+    echo [ERROR] Python not found! Please install Python 3.8+ and add to PATH.
     pause
     exit /b 1
 )
 
-:: 2. Установка зависимостей
-echo [1/3] Установка библиотек...
+REM 2. Install Requirements
+echo [1/3] Installing requirements...
 pip install -r requirements.txt
 if errorlevel 1 (
-    echo [ERROR] Не удалось установить библиотеки.
+    echo [ERROR] Failed to install requirements.
     pause
     exit /b 1
 )
 
-:: 3. Проверка необходимых файлов
+REM 3. Check Files
 echo.
-echo [2/3] Проверка файлов...
+echo [2/3] Checking files...
 if not exist "terraria_installer.spec" (
-    echo [ERROR] Файл terraria_installer.spec не найден!
-    pause
-    exit /b 1
-)
-if not exist "icon.ico" (
-    echo [WARNING] Иконка icon.ico не найдена (будет стандартная).
-)
-if not exist "banner.jpg" (
-    echo [ERROR] Баннер banner.jpg не найден! Интерфейс не запустится.
+    echo [ERROR] File 'terraria_installer.spec' not found!
     pause
     exit /b 1
 )
 
-:: 4. Сборка EXE
+if not exist "banner.jpg" (
+    echo [ERROR] File 'banner.jpg' not found!
+    pause
+    exit /b 1
+)
+
+REM 4. Build
 echo.
-echo [3/3] Сборка EXE через PyInstaller...
+echo [3/3] Building EXE...
 pyinstaller terraria_installer.spec --clean --noconfirm
 
 if errorlevel 1 (
     echo.
-    echo [ERROR] Ошибка сборки! Смотрите лог выше.
+    echo [ERROR] Build Failed! Check the log above.
     pause
     exit /b 1
 )
 
 echo.
 echo ========================================
-echo [SUCCESS] СБОРКА ЗАВЕРШЕНА!
+echo [SUCCESS] BUILD COMPLETE!
 echo ========================================
 echo.
-echo Ваш готовый файл находится здесь:
-echo dist\Calamity_Ultra_Installer.exe
+echo File location: dist\Calamity_Ultra_Installer.exe
 echo.
 pause
