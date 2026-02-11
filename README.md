@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![License](https://img.shields.io/github/license/TheFleece/calamity-coop-perfect-setup?style=for-the-badge)
+![Downloads](https://img.shields.io/github/downloads/TheFleece/calamity-coop-perfect-setup/total?style=for-the-badge&color=green)
 # 🤝 Calamity: True Co-op [RU]
 
 ![Обложка](./banner.png)
